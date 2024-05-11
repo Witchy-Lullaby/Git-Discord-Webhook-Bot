@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MentallyStable.GitHelper.Extensions
+namespace LLM.GitHelper.Extensions
 {
     public static class HttpExtensions
     {

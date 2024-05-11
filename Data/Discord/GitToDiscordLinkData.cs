@@ -1,4 +1,4 @@
-﻿namespace MentallyStable.GitHelper.Data.Discord
+﻿namespace LLM.GitHelper.Data.Discord
 {
     public class GitToDiscordLinkData
     {

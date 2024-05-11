@@ -1,9 +1,9 @@
 ﻿
 using DSharpPlus;
-using MentallyStable.GitHelper.Data.Git.Gitlab;
-using MentallyStable.GitHelper.Services.Discord;
+using LLM.GitHelper.Data.Git.Gitlab;
+using LLM.GitHelper.Services.Discord;
 
-namespace MentallyStable.GitHelper.Services.Parsers.Implementation
+namespace LLM.GitHelper.Services.Parsers.Implementation
 {
     public class GitlabResponseParser : IService, IResponseParser<GitlabResponse>
     {

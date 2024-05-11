@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qD4BF6u8sxcIs0npzlTRVV+q0n2aC8KI/b4V2uYB1l9Q/pMjanxuG4K/9JOnbPAQkoKLlaZim94etoHKzFhaNQ==",
+  "dgSpecHash": "Cq6R+Xv4l1GkjL8QbtGXWEXzgcOPu8u5PDsMdfrmhgi3ZSq0acLmQbDz5VSHLmtJs7zf1A8c0QA4vTS7exZZfA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Helper\\GitDiscordWebhookHelper.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Bot\\GitDiscordWebhookHelper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\dsharpplus\\4.4.6\\dsharpplus.4.4.6.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\dsharpplus.slashcommands\\4.4.6\\dsharpplus.slashcommands.4.4.6.nupkg.sha512",

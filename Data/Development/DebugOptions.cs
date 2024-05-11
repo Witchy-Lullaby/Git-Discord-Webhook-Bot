@@ -1,5 +1,5 @@
 ﻿
-namespace MentallyStable.GitHelper.Data.Development
+namespace LLM.GitHelper.Data.Development
 {
     public struct DebugOptions
     {

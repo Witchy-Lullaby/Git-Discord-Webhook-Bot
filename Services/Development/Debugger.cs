@@ -1,6 +1,6 @@
-﻿using MentallyStable.GitHelper.Data.Development;
+﻿using LLM.GitHelper.Data.Development;
 
-namespace MentallyStable.GitHelper.Services.Development
+namespace LLM.GitHelper.Services.Development
 {
     public class Debugger : IDebugger
     {

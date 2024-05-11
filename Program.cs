@@ -1,4 +1,4 @@
-using MentallyStable.GitHelper.Registrators;
+using LLM.GitHelper.Registrators;
 
 var builder = WebApplication.CreateBuilder(args);
 

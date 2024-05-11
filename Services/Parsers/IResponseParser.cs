@@ -1,8 +1,8 @@
 ﻿
 using DSharpPlus;
-using MentallyStable.GitHelper.Services.Discord;
+using LLM.GitHelper.Services.Discord;
 
-namespace MentallyStable.GitHelper.Services.Parsers
+namespace LLM.GitHelper.Services.Parsers
 {
     public interface IResponseParser<TResponse>
     {

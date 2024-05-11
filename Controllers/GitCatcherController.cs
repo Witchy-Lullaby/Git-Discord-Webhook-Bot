@@ -1,15 +1,15 @@
 using Newtonsoft.Json;
 using DSharpPlus.Entities;
 using Microsoft.AspNetCore.Mvc;
-using MentallyStable.GitHelper.Helpers;
-using MentallyStable.GitHelper.Data.Database;
-using MentallyStable.GitHelper.Data.Git.Gitlab;
-using MentallyStable.GitHelper.Services.Parsers;
-using MentallyStable.GitHelper.Data.Development;
-using MentallyStable.GitHelper.Services.Discord;
-using MentallyStable.GitHelper.Services.Development;
+using LLM.GitHelper.Helpers;
+using LLM.GitHelper.Data.Database;
+using LLM.GitHelper.Data.Git.Gitlab;
+using LLM.GitHelper.Services.Parsers;
+using LLM.GitHelper.Data.Development;
+using LLM.GitHelper.Services.Discord;
+using LLM.GitHelper.Services.Development;
 
-namespace MentallyStable.GitHelper.Controllers
+namespace LLM.GitHelper.Controllers
 {
     [ApiController]
     [Route("git-catcher")]

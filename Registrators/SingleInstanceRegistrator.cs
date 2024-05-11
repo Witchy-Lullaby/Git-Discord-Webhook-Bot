@@ -1,14 +1,14 @@
 ﻿using DSharpPlus;
-using MentallyStable.GitHelper.Services;
-using MentallyStable.GitHelper.Data.Database;
-using MentallyStable.GitHelper.Data.Development;
-using MentallyStable.GitHelper.Services.Discord;
-using MentallyStable.GitHelper.Services.Development;
-using MentallyStable.GitHelper.Services.Discord.Bot;
-using MentallyStable.GitHelper.Services.Parsers.Implementation;
-using MentallyStable.GitHelper.Helpers;
+using LLM.GitHelper.Services;
+using LLM.GitHelper.Data.Database;
+using LLM.GitHelper.Data.Development;
+using LLM.GitHelper.Services.Discord;
+using LLM.GitHelper.Services.Development;
+using LLM.GitHelper.Services.Discord.Bot;
+using LLM.GitHelper.Services.Parsers.Implementation;
+using LLM.GitHelper.Helpers;
 
-namespace MentallyStable.GitHelper.Registrators
+namespace LLM.GitHelper.Registrators
 {
     public sealed class SingleInstanceRegistrator : IRegistrator
     {

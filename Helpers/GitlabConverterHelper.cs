@@ -1,8 +1,8 @@
 ﻿
-using MentallyStable.GitHelper.Data.Database;
-using MentallyStable.GitHelper.Data.Git.Gitlab;
+using LLM.GitHelper.Data.Database;
+using LLM.GitHelper.Data.Git.Gitlab;
 
-namespace MentallyStable.GitHelper.Helpers
+namespace LLM.GitHelper.Helpers
 {
     public static class GitlabConverterHelper
     {

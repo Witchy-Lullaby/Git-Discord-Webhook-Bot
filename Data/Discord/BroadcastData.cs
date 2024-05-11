@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using DSharpPlus.Entities;
 
-namespace MentallyStable.GitHelper.Data.Discord
+namespace LLM.GitHelper.Data.Discord
 {
     public class BroadcastData
     {

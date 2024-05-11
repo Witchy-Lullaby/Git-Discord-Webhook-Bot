@@ -1,11 +1,11 @@
 ﻿using DSharpPlus.Entities;
-using MentallyStable.GitHelper.Services;
-using MentallyStable.GitHelper.Data.Git.Gitlab;
-using MentallyStable.GitHelper.Services.Discord;
-using MentallyStable.GitHelper.Data.Development;
-using MentallyStable.GitHelper.Services.Development;
+using LLM.GitHelper.Services;
+using LLM.GitHelper.Data.Git.Gitlab;
+using LLM.GitHelper.Services.Discord;
+using LLM.GitHelper.Data.Development;
+using LLM.GitHelper.Services.Development;
 
-namespace MentallyStable.GitHelper.Helpers
+namespace LLM.GitHelper.Helpers
 {
     public class GitCatcherHelper : IService
     {

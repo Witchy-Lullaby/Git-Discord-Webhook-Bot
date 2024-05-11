@@ -1,9 +1,9 @@
 ﻿using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
-using MentallyStable.GitHelper.Extensions;
-using MentallyStable.GitHelper.Services.Discord;
+using LLM.GitHelper.Extensions;
+using LLM.GitHelper.Services.Discord;
 
-namespace MentallyStable.GitHelper.Commands
+namespace LLM.GitHelper.Commands
 {
     public class NewsCommand : ApplicationCommandModule
     {

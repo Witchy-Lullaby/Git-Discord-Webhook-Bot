@@ -1,12 +1,12 @@
 ﻿using DSharpPlus;
 using DSharpPlus.Entities;
-using MentallyStable.GitHelper.Helpers;
-using MentallyStable.GitHelper.Data.Discord;
-using MentallyStable.GitHelper.Data.Database;
-using MentallyStable.GitHelper.Data.Development;
-using MentallyStable.GitHelper.Services.Development;
+using LLM.GitHelper.Helpers;
+using LLM.GitHelper.Data.Discord;
+using LLM.GitHelper.Data.Database;
+using LLM.GitHelper.Data.Development;
+using LLM.GitHelper.Services.Development;
 
-namespace MentallyStable.GitHelper.Services.Discord
+namespace LLM.GitHelper.Services.Discord
 {
     public class BroadcastDataService : IService
     {

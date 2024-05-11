@@ -1,10 +1,10 @@
 ﻿
 using Newtonsoft.Json;
 using DSharpPlus.Entities;
-using MentallyStable.GitHelper.Data;
-using MentallyStable.GitHelper.Data.Discord;
+using LLM.GitHelper.Data;
+using LLM.GitHelper.Data.Discord;
 
-namespace MentallyStable.GitHelper.Helpers
+namespace LLM.GitHelper.Helpers
 {
     public static class BroadcasterHelper
     {

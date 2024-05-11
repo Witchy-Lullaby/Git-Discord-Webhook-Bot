@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Helper\\GitDiscordWebhookHelper.csproj": {}
+    "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Bot\\GitDiscordWebhookHelper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Helper\\GitDiscordWebhookHelper.csproj": {
+    "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Bot\\GitDiscordWebhookHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Helper\\GitDiscordWebhookHelper.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Bot\\GitDiscordWebhookHelper.csproj",
         "projectName": "GitDiscordWebhookHelper",
-        "projectPath": "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Helper\\GitDiscordWebhookHelper.csproj",
+        "projectPath": "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Bot\\GitDiscordWebhookHelper.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Helper\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Documents\\GitHub\\Git-Discord-Webhook-Bot\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

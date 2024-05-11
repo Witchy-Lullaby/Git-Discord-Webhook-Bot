@@ -1,4 +1,4 @@
-﻿namespace MentallyStable.GitHelper.Registrators
+﻿namespace LLM.GitHelper.Registrators
 {
     public interface IRegistrator
     {

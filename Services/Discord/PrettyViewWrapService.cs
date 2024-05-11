@@ -1,11 +1,11 @@
 ﻿using DSharpPlus.Entities;
-using MentallyStable.GitHelper.Helpers;
-using MentallyStable.GitHelper.Data.Database;
-using MentallyStable.GitHelper.Data.Git.Gitlab;
+using LLM.GitHelper.Helpers;
+using LLM.GitHelper.Data.Database;
+using LLM.GitHelper.Data.Git.Gitlab;
 using DSharpPlus;
-using MentallyStable.GitHelper.Services.Parsers;
+using LLM.GitHelper.Services.Parsers;
 
-namespace MentallyStable.GitHelper.Services.Discord
+namespace LLM.GitHelper.Services.Discord
 {
     public class PrettyViewWrapService : IService
     {

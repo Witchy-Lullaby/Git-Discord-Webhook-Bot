@@ -1,6 +1,6 @@
 ﻿using DSharpPlus.Entities;
 
-namespace MentallyStable.GitHelper.Extensions
+namespace LLM.GitHelper.Extensions
 {
     public static class BotVisualsExtensions
     {

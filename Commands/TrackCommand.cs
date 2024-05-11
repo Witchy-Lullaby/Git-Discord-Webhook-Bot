@@ -1,7 +1,7 @@
 ﻿using DSharpPlus.SlashCommands;
-using MentallyStable.GitHelper.Services.Discord;
+using LLM.GitHelper.Services.Discord;
 
-namespace MentallyStable.GitHelper.Commands
+namespace LLM.GitHelper.Commands
 {
     public class TrackCommand : ApplicationCommandModule
     {

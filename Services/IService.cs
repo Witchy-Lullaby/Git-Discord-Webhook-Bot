@@ -1,4 +1,4 @@
-﻿namespace MentallyStable.GitHelper.Services
+﻿namespace LLM.GitHelper.Services
 {
     public interface IService
     {

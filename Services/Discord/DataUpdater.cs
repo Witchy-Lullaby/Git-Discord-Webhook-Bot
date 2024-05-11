@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
-using MentallyStable.GitHelper.Data;
-using MentallyStable.GitHelper.Data.Discord;
-using MentallyStable.GitHelper.Data.Database;
+using LLM.GitHelper.Data;
+using LLM.GitHelper.Data.Discord;
+using LLM.GitHelper.Data.Database;
 
-namespace MentallyStable.GitHelper.Services.Discord
+namespace LLM.GitHelper.Services.Discord
 {
     public class DataUpdater
     {

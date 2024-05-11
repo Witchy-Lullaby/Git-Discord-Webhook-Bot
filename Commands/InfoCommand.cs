@@ -1,10 +1,10 @@
 ﻿using DSharpPlus.Entities;
 using DSharpPlus.SlashCommands;
-using MentallyStable.GitHelper.Extensions;
-using MentallyStable.GitHelper.Data.Database;
-using MentallyStable.GitHelper.Services.Discord;
+using LLM.GitHelper.Extensions;
+using LLM.GitHelper.Data.Database;
+using LLM.GitHelper.Services.Discord;
 
-namespace MentallyStable.GitHelper.Commands
+namespace LLM.GitHelper.Commands
 {
     public class InfoCommand : ApplicationCommandModule
     {

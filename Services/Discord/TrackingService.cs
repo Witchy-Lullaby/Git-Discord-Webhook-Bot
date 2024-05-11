@@ -1,8 +1,8 @@
 ﻿using DSharpPlus;
 using DSharpPlus.Entities;
-using MentallyStable.GitHelper.Data.Discord;
+using LLM.GitHelper.Data.Discord;
 
-namespace MentallyStable.GitHelper.Services.Discord
+namespace LLM.GitHelper.Services.Discord
 {
     public class TrackingService : IService
     {

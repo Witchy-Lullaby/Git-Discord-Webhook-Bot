@@ -1,4 +1,4 @@
-﻿namespace MentallyStable.GitHelper.Data.Database
+﻿namespace LLM.GitHelper.Data.Database
 {
     public struct DatabaseConfig
     {

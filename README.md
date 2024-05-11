@@ -1,6 +1,6 @@
 # Git Discord Helper for teams
 
-> No matter what git system u use as long as you have pull requests/comments/commits u can use this system. Everything is changable thru /configs folder. It contains <a href="https://github.com/MentallyStable4sure/Git-Discord-Webhook-Helper/blob/main/configs/discordbroadcasters.json">discordbroadcasters.json</a> which can be changed to your channels/actions to track. To start bot simply change <a href="https://github.com/MentallyStable4sure/Git-Discord-Webhook-Helper/blob/main/configs/discordconfig.json">discordconfig.json</a> with your token n stuff and boot up.
+> No matter what git system u use as long as you have pull requests/comments/commits u can use this system. Everything is changable thru /configs folder. It contains <a href="https://github.com/limelight-mint/Git-Discord-Webhook-Helper/blob/main/configs/discordbroadcasters.json">discordbroadcasters.json</a> which can be changed to your channels/actions to track. To start bot simply change <a href="https://github.com/limelight-mint/Git-Discord-Webhook-Helper/blob/main/configs/discordconfig.json">discordconfig.json</a> with your token n stuff and boot up.
 
 <br>
 
@@ -52,7 +52,7 @@
   ## 🔗🎲 How to setup?:
 
   ### Host it yourself on webapp and test in GitLab:
-  > Download latest <a href="https://github.com/MentallyStable4sure/Git-Discord-Webhook-Helper/releases">release</a>, unpack, it, launch .exe, or if u r using ubuntu/linux/apache web server/etc. then upload all files on the server, change config/discordconfig.json to your needs (token from discord developer portal and CatchAllAPI_ID of your discord text channel to receive things), then use command on your server:
+  > Download latest <a href="https://github.com/limelight-mint/Git-Discord-Webhook-Helper/releases">release</a>, unpack, it, launch .exe, or if u r using ubuntu/linux/apache web server/etc. then upload all files on the server, change config/discordconfig.json to your needs (token from discord developer portal and CatchAllAPI_ID of your discord text channel to receive things), then use command on your server:
 
   ```
   cd /your_folder_with_this_project - to navigate to the folder

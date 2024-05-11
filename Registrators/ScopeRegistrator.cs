@@ -1,10 +1,10 @@
-﻿using MentallyStable.GitHelper.Data.Git.Gitlab;
-using MentallyStable.GitHelper.Services.Parsers;
-using MentallyStable.GitHelper.Services.Discord;
-using MentallyStable.GitHelper.Services.Development;
-using MentallyStable.GitHelper.Services.Parsers.Implementation;
+﻿using LLM.GitHelper.Data.Git.Gitlab;
+using LLM.GitHelper.Services.Parsers;
+using LLM.GitHelper.Services.Discord;
+using LLM.GitHelper.Services.Development;
+using LLM.GitHelper.Services.Parsers.Implementation;
 
-namespace MentallyStable.GitHelper.Registrators
+namespace LLM.GitHelper.Registrators
 {
     public class ScopeRegistrator : IRegistrator
     {

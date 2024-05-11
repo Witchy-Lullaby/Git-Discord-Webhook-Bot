@@ -1,4 +1,4 @@
-﻿namespace MentallyStable.GitHelper.Data.Git.Gitlab
+﻿namespace LLM.GitHelper.Data.Git.Gitlab
 {
     public class GitlabAuthor
     {

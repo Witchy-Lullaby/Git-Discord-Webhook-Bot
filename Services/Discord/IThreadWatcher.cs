@@ -1,6 +1,6 @@
 ﻿using DSharpPlus.Entities;
 
-namespace MentallyStable.GitHelper.Services.Discord
+namespace LLM.GitHelper.Services.Discord
 {
     public interface IThreadWatcher
     {
