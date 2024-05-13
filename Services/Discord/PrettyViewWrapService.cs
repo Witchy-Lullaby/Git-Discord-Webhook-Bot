@@ -1,8 +1,8 @@
-﻿using DSharpPlus.Entities;
+﻿using DSharpPlus;
+using DSharpPlus.Entities;
 using LLM.GitHelper.Helpers;
 using LLM.GitHelper.Data.Database;
 using LLM.GitHelper.Data.Git.Gitlab;
-using DSharpPlus;
 using LLM.GitHelper.Services.Parsers;
 
 namespace LLM.GitHelper.Services.Discord

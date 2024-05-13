@@ -1,4 +1,5 @@
 ﻿using DSharpPlus;
+using LLM.GitHelper.Helpers;
 using LLM.GitHelper.Services;
 using LLM.GitHelper.Data.Database;
 using LLM.GitHelper.Data.Development;
@@ -6,7 +7,6 @@ using LLM.GitHelper.Services.Discord;
 using LLM.GitHelper.Services.Development;
 using LLM.GitHelper.Services.Discord.Bot;
 using LLM.GitHelper.Services.Parsers.Implementation;
-using LLM.GitHelper.Helpers;
 
 namespace LLM.GitHelper.Registrators
 {
