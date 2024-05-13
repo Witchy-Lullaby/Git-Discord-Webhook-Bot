@@ -41,7 +41,12 @@ namespace LLM.GitHelper.Helpers
                     {
                         var state = response.ObjectAttributes.State;
                         await _threadWatcher.Post(threadChannel, threadedMessage);
-                        if (state.Contains("closed") || state.Contains("merged")) await _threadWatcher.RemoveEveryone(threadChannel);
+                        if (state.Contains("closed") || state.Contains("merged"))
+                        {
+                            //await _threadWatcher.RemoveEveryone(threadChannel);
+                            await threadChannel.DeleteAsync(); //deleting an entire thread
+                            await channel.SendMessageAsync(threadedMessage); //and simply post that it was merged as a new message
+                        }
                     }
                     else _debugger.Log($"Couldn't find a thread '{title}'.", new DebugOptions(this, "[THREAD NOT FOUND]"));
                 }
