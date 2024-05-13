@@ -17,7 +17,7 @@ namespace LLM.GitHelper.Data.Git.Gitlab
         public GitlabAttributes ObjectAttributes = new GitlabAttributes();
         [JsonProperty("merge_request")]
         public GitlabMergeRequest MergeRequest = new GitlabMergeRequest();
-        public GitlabRepository Reposity = new GitlabRepository();
+        public GitlabRepository Repository = new GitlabRepository();
         public GitlabUser Author = new GitlabUser();
     }
 }

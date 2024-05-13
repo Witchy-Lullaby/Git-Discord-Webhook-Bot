@@ -2,8 +2,10 @@
 using DSharpPlus.Entities;
 using LLM.GitHelper.Helpers;
 using LLM.GitHelper.Data.Database;
+using LLM.GitHelper.MessageWrappers;
 using LLM.GitHelper.Data.Git.Gitlab;
 using LLM.GitHelper.Services.Parsers;
+using LLM.GitHelper.MessageWrappers.Gitlab;
 
 namespace LLM.GitHelper.Services.Discord
 {
@@ -13,12 +15,29 @@ namespace LLM.GitHelper.Services.Discord
         private readonly DiscordClient _client;
         private readonly IResponseParser<GitlabResponse> _parser;
 
+        private readonly BaseGitMessageWrapper[] _gitlabMessageWrappers;
+        private readonly GitlabUnknownPushWrapper _unknownMessageWrapper;
+
         public PrettyViewWrapService(UserLinkEstablisherService establisherService,
             DiscordClient discordClient, IResponseParser<GitlabResponse> parser)
         {
             _establisherService = establisherService;
             _client = discordClient;
             _parser = parser;
+
+            _gitlabMessageWrappers = new BaseGitMessageWrapper[] {
+                new GitlabMergeRequestWrapper(Endpoints.GITLAB_MERGE_REQUEST_ATTRIBUTE, _client, _parser, _establisherService),
+                new GitlabCommentWrapper(Endpoints.GITLAB_COMMENT_ATTRIBUTE, _client, _parser, _establisherService),
+                new GitlabCommitWrapper(Endpoints.GITLAB_PUSH_ATTRIBUTE, _client, _parser, _establisherService)
+            };
+
+            _unknownMessageWrapper = new
+            GitlabUnknownPushWrapper(
+            Endpoints.GITLAB_PUSH_ATTRIBUTE,
+            _client,
+            _parser,
+            _establisherService,
+            new string[] { "push", "comment", "merge", "issue", "wiki", "fix", "hotfix", "bug", "commit" });
         }
 
         public Task InitializeService() => Task.CompletedTask;
@@ -27,7 +46,7 @@ namespace LLM.GitHelper.Services.Discord
         {
             string[] identifiers = response.CreateIdentifiers();
             string avatar = await CheckAvatarBasedOnLink(response, identifiers);
-            string description = await GetDescriptionBasedOnDescriptor(descriptor, response);
+            string description = await GetDescription(response, identifiers, descriptor);
 
             return new DiscordMessageBuilder()
                 .WithEmbed(new DiscordEmbedBuilder()
@@ -64,7 +83,25 @@ namespace LLM.GitHelper.Services.Discord
             }
         }
 
-        private async Task<string> GetDescriptionBasedOnDescriptor(string descriptor, GitlabResponse response)
+        private async Task<string> GetDescription(GitlabResponse response, string[] identifiers, string descriptor)
+        {
+            string info = string.Empty;
+
+            foreach (var helper in _gitlabMessageWrappers)
+            {
+                info = await helper.ShowAccordingToType(descriptor, response);
+                if (string.IsNullOrEmpty(info)) continue;
+                else break;
+            }
+
+            if (string.IsNullOrEmpty(info)) info = await _unknownMessageWrapper.ShowAccordingToTypeOrKeywords(info, identifiers, response);
+
+            return info;
+        }
+
+
+        [Obsolete("Old syntax, better use GetDescription(response, keywords, descriptor)")]
+        private async Task<string> GetDescriptionBasedOnDescriptor(string descriptor, GitlabResponse response, string[] identifiers)
         {
             string author = response.ObjectAttributes.LastCommit.Author.Name;
             if (string.IsNullOrEmpty(author)) author = response.MergeRequest.LastCommit.Author.Name;

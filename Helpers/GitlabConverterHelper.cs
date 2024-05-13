@@ -97,5 +97,20 @@ namespace LLM.GitHelper.Helpers
             else if (actionDiffer == "closed") return "https://bunbun.cloud/admin/funkymonke/img/prclosed.png";
             else return "https://bunbun.cloud/admin/funkymonke/img/prmerged.png";
         }
+
+        public static string Truncate(this string value, int maxLength)
+        {
+            if (string.IsNullOrEmpty(value)) return value;
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
+        }
+
+        public static string GetAuthorFromResponse(this GitlabResponse response)
+        {
+            string author = response.ObjectAttributes.LastCommit.Author.Name;
+            if (string.IsNullOrEmpty(author)) author = response.MergeRequest.LastCommit.Author.Name;
+            if (string.IsNullOrEmpty(author)) author = response.User.Name;
+
+            return author;
+        }
     }
 }
