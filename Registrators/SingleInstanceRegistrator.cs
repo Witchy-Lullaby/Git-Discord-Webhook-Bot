@@ -28,6 +28,7 @@ namespace LLM.GitHelper.Registrators
         {
             _debugger = new Debugger();
             _discordConfig = configs.DiscordConfig;
+            var responseParser = new GitlabResponseParser();
 
             var configSetup = ConvertDiscordConfig(_discordConfig);
             _discordClient = new DiscordClient(configSetup);
@@ -35,8 +36,8 @@ namespace LLM.GitHelper.Registrators
             _broadcastDataService = new BroadcastDataService(configs.BroadcastData, _discordClient);
             _trackingService = new TrackingService(_discordClient, configs.BroadcastData);
             _userLinkEstablisherService = new UserLinkEstablisherService(configs.LinkData);
-            _prettyViewWrapService = new PrettyViewWrapService(_userLinkEstablisherService, _discordClient, new GitlabResponseParser());
-            _threadWatcherService = new ThreadWatcherService(_userLinkEstablisherService, _discordClient);
+            _prettyViewWrapService = new PrettyViewWrapService(_userLinkEstablisherService, _discordClient, responseParser);
+            _threadWatcherService = new ThreadWatcherService(_userLinkEstablisherService, _discordClient, responseParser);
             _catcherHelper = new GitCatcherHelper(_threadWatcherService, _broadcastDataService);
 
 

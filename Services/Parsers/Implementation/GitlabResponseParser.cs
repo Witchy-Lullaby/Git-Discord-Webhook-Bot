@@ -1,5 +1,6 @@
 ﻿
 using DSharpPlus;
+using LLM.GitHelper.Data.Discord;
 using LLM.GitHelper.Data.Git.Gitlab;
 using LLM.GitHelper.Services.Discord;
 
@@ -37,11 +38,6 @@ namespace LLM.GitHelper.Services.Parsers.Implementation
 
             string[] divided = description.Split('@', ' ');
 
-            foreach (var item in divided)
-            {
-                Console.WriteLine(item);
-            }
-
             for (int i = 0; i < divided.Length; i++)
             {
                 var link = establisher.GetConnection(divided[i]);
@@ -60,6 +56,35 @@ namespace LLM.GitHelper.Services.Parsers.Implementation
             description = description.Replace('#', ' '); //Removing headings
 
             return description;
+        }
+
+        public List<GitToDiscordLinkData> GetParsedLinks(DiscordClient client, string[] textToSeekUser, UserLinkEstablisherService establisher)
+        {
+            List<string> parsedContent = new List<string>();
+            foreach (var description in textToSeekUser)
+            {
+                if (!description.Contains('@')) continue;
+                parsedContent.Add(description);
+            }
+
+            List<GitToDiscordLinkData> parsedLinks = new List<GitToDiscordLinkData>();
+            if (parsedContent.Count <= 0) return parsedLinks;
+
+            foreach (var contentToParse in parsedContent)
+            {
+                string[] divided = contentToParse.Split('@', ' ');
+
+                for (int i = 0; i < divided.Length; i++)
+                {
+                    var link = establisher.GetConnection(divided[i]);
+                    if (link == null) continue;
+                    parsedLinks.Add(link);
+                }
+
+                if (divided == null || divided.Length <= 0) continue;
+            }
+
+            return parsedLinks;
         }
     }
 }

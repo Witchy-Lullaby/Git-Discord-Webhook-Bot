@@ -1,5 +1,6 @@
 ﻿
 using DSharpPlus;
+using LLM.GitHelper.Data.Discord;
 using LLM.GitHelper.Services.Discord;
 
 namespace LLM.GitHelper.Services.Parsers
@@ -15,5 +16,7 @@ namespace LLM.GitHelper.Services.Parsers
         public string[] ParsePrefixes(TResponse response, string[] prefixes);
 
         public Task<string> ParseLinks(DiscordClient client, string description, UserLinkEstablisherService establisher);
+
+        public List<GitToDiscordLinkData> GetParsedLinks(DiscordClient client, string[] textToSeekUser, UserLinkEstablisherService establisher);
     }
 }

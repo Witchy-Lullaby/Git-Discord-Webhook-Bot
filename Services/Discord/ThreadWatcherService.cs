@@ -1,5 +1,8 @@
 ﻿using DSharpPlus;
 using DSharpPlus.Entities;
+using LLM.GitHelper.Data.Discord;
+using LLM.GitHelper.Data.Git.Gitlab;
+using LLM.GitHelper.Services.Parsers;
 
 namespace LLM.GitHelper.Services.Discord
 {
@@ -7,12 +10,14 @@ namespace LLM.GitHelper.Services.Discord
     {
         private readonly UserLinkEstablisherService _userLinkEstablisherService;
         private readonly DiscordClient _client;
+        private readonly IResponseParser<GitlabResponse> _parser;
 
         public ThreadWatcherService(UserLinkEstablisherService userLinkEstablisherService,
-            DiscordClient client)
+            DiscordClient client, IResponseParser<GitlabResponse> parser)
         {
             _userLinkEstablisherService = userLinkEstablisherService;
             _client = client;
+            _parser = parser;
         }
 
         public Task InitializeService() => Task.CompletedTask;
@@ -26,13 +31,27 @@ namespace LLM.GitHelper.Services.Discord
 
         public async Task AddNeededMembersToThread(DiscordThreadChannel thread, string[] identifiers)
         {
+            var additionalLinks = _parser.GetParsedLinks(_client, identifiers, _userLinkEstablisherService);
+
             var links = _userLinkEstablisherService.GetConnections(identifiers);
+
+            if(additionalLinks.Count > 0) links.Concat(additionalLinks);
+            await NotifyUsersInThread(additionalLinks, thread);
+        }
+
+        private async Task NotifyUsersInThread(List<GitToDiscordLinkData> links, DiscordThreadChannel thread)
+        {
+            string names = " ";
+            string notifyNames = " ";
             foreach (var link in links)
             {
                 var user = await _client.GetUserAsync(link.DiscordSnowflakeId);
-                var message = await thread.SendMessageAsync($"@silent {user.Mention}");
-                await message.ModifyAsync($"🎲 You've been auto-invited by identifier parsing: {link.GitUniqueIdentifier} ✨");
+                names += $"{link.GitUniqueIdentifier} ";
+                notifyNames += $"@silent {user.Mention} ";
             }
+
+            var message = await thread.SendMessageAsync(notifyNames);
+            await message.ModifyAsync($"🎲 You've been auto-invited by identifier parsing: {names} ✨");
         }
 
         public async Task CreateThread(List<DiscordChannel> discordChannels, string title, DiscordMessageBuilder discordMessageBuilder, string[] identifiers)
