@@ -12,6 +12,8 @@ namespace LLM.GitHelper.MessageWrappers.Gitlab
         private readonly DiscordClient _client;
         private readonly IResponseParser<GitlabResponse> _parser;
 
+        public const int MAX_DESCRIPTION_LENGTH = 450;
+
         public GitlabMergeRequestWrapper(string gitHelperType, DiscordClient client,
             IResponseParser<GitlabResponse> parse, UserLinkEstablisherService establisher,
             string[] keywords = null) : base(gitHelperType, keywords)
@@ -26,7 +28,7 @@ namespace LLM.GitHelper.MessageWrappers.Gitlab
             string author = response.GetAuthorFromResponse();
 
             var description = await _parser.ParseLinks(_client, response.ObjectAttributes.Description, _establisherService);
-            return $"✨ ** {response.Project.PathWithNamespace} ** ✨\n📌 __Author:__ ** {author} **\n\n> 🎯 __Target:__ ** {response.ObjectAttributes.TargetBranch} **\n> 📦 __Source:__ ** {response.ObjectAttributes.SourceBranch} **\n `{description}` ";
+            return $"✨ ** {response.Project.PathWithNamespace} ** ✨\n📌 __Author:__ ** {author} **\n\n> 🎯 __Target:__ ** {response.ObjectAttributes.TargetBranch} **\n> 📦 __Source:__ ** {response.ObjectAttributes.SourceBranch} **\n `{description.Truncate(MAX_DESCRIPTION_LENGTH)}` ";
         }
     }
 }
