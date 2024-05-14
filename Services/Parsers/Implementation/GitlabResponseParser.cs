@@ -7,7 +7,6 @@ namespace LLM.GitHelper.Services.Parsers.Implementation
 {
     public class GitlabResponseParser : IService, IResponseParser<GitlabResponse>
     {
-        public const int MAX_LAST_COMMIT_LENGTH = 80;
         public Task InitializeService() => Task.CompletedTask;
 
         public string[] ParsePrefixes(GitlabResponse response, string[] prefixes)
@@ -59,7 +58,6 @@ namespace LLM.GitHelper.Services.Parsers.Implementation
 
 
             description = description.Replace('#', ' '); //Removing headings
-            if (description.Length > MAX_LAST_COMMIT_LENGTH) description = description.Substring(0, MAX_LAST_COMMIT_LENGTH);
 
             return description;
         }
