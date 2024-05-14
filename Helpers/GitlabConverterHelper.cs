@@ -8,11 +8,12 @@ namespace LLM.GitHelper.Helpers
     {
         public static string[] CreateIdentifiers(this GitlabResponse response)
         {
-            return new string[3]
+            return new string[4]
             {
                 response.User.Username,
                 response.User.Email,
-                response.User.Name
+                response.User.Name,
+                response.ObjectAttributes.Note
             };
         }
 
