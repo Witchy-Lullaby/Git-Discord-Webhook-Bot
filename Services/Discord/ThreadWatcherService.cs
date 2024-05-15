@@ -47,21 +47,27 @@ namespace LLM.GitHelper.Services.Discord
         {
             string names = " ";
             string notifyNames = " ";
+            ulong threadId = thread.Id;
+
             foreach (var link in links)
             {
                 var user = await _client.GetUserAsync(link.DiscordSnowflakeId);
                 if (user == null) continue;
+
                 names += $"{link.GitUniqueIdentifier} ";
-                notifyNames += $"@silent {user?.Mention} ";
+                notifyNames += $"@silent {user.Mention}\n";
             }
 
             if (names.Length <= 0) return;
 
-            _debugger.TryExecuteAsync(async () =>
-            {
-                var message = await thread.SendMessageAsync(notifyNames);
-                await message.ModifyAsync($"🎲 You've been auto-invited by identifier parsing: {names} ✨");
-            }, new Data.Development.DebugOptions(this, nameof(NotifyUsersInThread)));
+            await _debugger.TryExecuteAsync(PostAndRedact(notifyNames, names, threadId), new Data.Development.DebugOptions(this, nameof(NotifyUsersInThread)));
+        }
+
+        private async Task PostAndRedact(string message, string readactTo, ulong channelId)
+        {
+            var channel = await _client.GetChannelAsync(channelId);
+            var threadMessage = await channel.SendMessageAsync(message);
+            await threadMessage.ModifyAsync($"🎲 You've been auto-invited by identifier parsing: {readactTo} ✨");
         }
 
         public async Task CreateThread(List<DiscordChannel> discordChannels, string title, DiscordMessageBuilder discordMessageBuilder, string[] identifiers)
