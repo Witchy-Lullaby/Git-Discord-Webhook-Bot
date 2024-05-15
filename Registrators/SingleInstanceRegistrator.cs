@@ -37,7 +37,7 @@ namespace LLM.GitHelper.Registrators
             _trackingService = new TrackingService(_discordClient, configs.BroadcastData);
             _userLinkEstablisherService = new UserLinkEstablisherService(configs.LinkData);
             _prettyViewWrapService = new PrettyViewWrapService(_userLinkEstablisherService, _discordClient, responseParser);
-            _threadWatcherService = new ThreadWatcherService(_userLinkEstablisherService, _discordClient, responseParser);
+            _threadWatcherService = new ThreadWatcherService(_userLinkEstablisherService, _discordClient, responseParser, _debugger);
             _catcherHelper = new GitCatcherHelper(_threadWatcherService, _broadcastDataService);
 
 

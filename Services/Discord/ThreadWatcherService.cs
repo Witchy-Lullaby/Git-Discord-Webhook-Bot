@@ -3,6 +3,7 @@ using DSharpPlus.Entities;
 using LLM.GitHelper.Data.Discord;
 using LLM.GitHelper.Data.Git.Gitlab;
 using LLM.GitHelper.Services.Parsers;
+using LLM.GitHelper.Services.Development;
 
 namespace LLM.GitHelper.Services.Discord
 {
@@ -11,13 +12,15 @@ namespace LLM.GitHelper.Services.Discord
         private readonly UserLinkEstablisherService _userLinkEstablisherService;
         private readonly DiscordClient _client;
         private readonly IResponseParser<GitlabResponse> _parser;
+        private readonly IDebugger _debugger;
 
         public ThreadWatcherService(UserLinkEstablisherService userLinkEstablisherService,
-            DiscordClient client, IResponseParser<GitlabResponse> parser)
+            DiscordClient client, IResponseParser<GitlabResponse> parser, IDebugger debugger)
         {
             _userLinkEstablisherService = userLinkEstablisherService;
             _client = client;
             _parser = parser;
+            _debugger = debugger;
         }
 
         public Task InitializeService() => Task.CompletedTask;
@@ -31,6 +34,7 @@ namespace LLM.GitHelper.Services.Discord
 
         public async Task AddNeededMembersToThread(DiscordThreadChannel thread, string[] identifiers)
         {
+            if (identifiers == null || identifiers.Length <= 0) return;
             var additionalLinks = _parser.GetParsedLinks(_client, identifiers, _userLinkEstablisherService);
 
             var links = _userLinkEstablisherService.GetConnections(identifiers);
@@ -46,12 +50,18 @@ namespace LLM.GitHelper.Services.Discord
             foreach (var link in links)
             {
                 var user = await _client.GetUserAsync(link.DiscordSnowflakeId);
+                if (user == null) continue;
                 names += $"{link.GitUniqueIdentifier} ";
-                notifyNames += $"@silent {user.Mention} ";
+                notifyNames += $"@silent {user?.Mention} ";
             }
 
-            var message = await thread.SendMessageAsync(notifyNames);
-            await message.ModifyAsync($"🎲 You've been auto-invited by identifier parsing: {names} ✨");
+            if (names.Length <= 0) return;
+
+            _debugger.TryExecuteAsync(async () =>
+            {
+                var message = await thread.SendMessageAsync(notifyNames);
+                await message.ModifyAsync($"🎲 You've been auto-invited by identifier parsing: {names} ✨");
+            }, new Data.Development.DebugOptions(this, nameof(NotifyUsersInThread)));
         }
 
         public async Task CreateThread(List<DiscordChannel> discordChannels, string title, DiscordMessageBuilder discordMessageBuilder, string[] identifiers)

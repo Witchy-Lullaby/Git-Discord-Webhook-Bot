@@ -36,6 +36,8 @@ namespace LLM.GitHelper.Services.Parsers.Implementation
         {
             if (!description.Contains('@')) return description;
 
+            string oldDescription = description;
+
             string[] divided = description.Split('@', ' ');
 
             for (int i = 0; i < divided.Length; i++)
@@ -52,8 +54,8 @@ namespace LLM.GitHelper.Services.Parsers.Implementation
                 description += $"{word} ";
             }
 
-
-            description = description.Replace('#', ' '); //Removing headings
+            if (string.IsNullOrEmpty(description) || description.Length <= 1) description = oldDescription;
+            if(description.Contains('#')) description = description.Replace('#', ' '); //Removing headings
 
             return description;
         }

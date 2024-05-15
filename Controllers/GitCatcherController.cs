@@ -43,7 +43,16 @@ namespace LLM.GitHelper.Controllers
         [HttpPost("webhook-raw")]
         public async Task<string> Catch([FromBody] object body)
         {
-            var response = JsonConvert.DeserializeObject<GitlabResponse>(body.ToString());
+            GitlabResponse response = null;
+            try
+            {
+                response = JsonConvert.DeserializeObject<GitlabResponse>(body.ToString());
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+
             Console.WriteLine(body);
 
             //parse action type if possible (if not parse prefixes) and if its not a comment create a new thread

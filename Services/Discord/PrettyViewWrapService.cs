@@ -101,7 +101,7 @@ namespace LLM.GitHelper.Services.Discord
 
 
         [Obsolete("Old syntax, better use GetDescription(response, keywords, descriptor)")]
-        private async Task<string> GetDescriptionBasedOnDescriptor(string descriptor, GitlabResponse response, string[] identifiers)
+        private async Task<string> GetDescriptionBasedOnDescriptor(GitlabResponse response, string[] identifiers, string descriptor)
         {
             string author = response.ObjectAttributes.LastCommit.Author.Name;
             if (string.IsNullOrEmpty(author)) author = response.MergeRequest.LastCommit.Author.Name;
@@ -128,6 +128,8 @@ namespace LLM.GitHelper.Services.Discord
             }
 
             info += lastCommit;
+
+            Console.WriteLine($"[FULL PAYLOAD]\n{info}");
             return info;
         }
     }
