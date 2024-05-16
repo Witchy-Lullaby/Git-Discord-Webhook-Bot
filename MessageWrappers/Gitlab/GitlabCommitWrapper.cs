@@ -12,7 +12,7 @@ namespace LLM.GitHelper.MessageWrappers.Gitlab
         private readonly DiscordClient _client;
         private readonly IResponseParser<GitlabResponse> _parser;
 
-        public const int MAX_LAST_COMMIT_LENGTH = 80;
+        public const int MAX_LAST_COMMIT_LENGTH = 40;
 
         public GitlabCommitWrapper(string gitHelperType, DiscordClient client,
             IResponseParser<GitlabResponse> parse, UserLinkEstablisherService establisher,

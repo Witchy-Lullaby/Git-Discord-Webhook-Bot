@@ -12,7 +12,7 @@ namespace LLM.GitHelper.MessageWrappers.Gitlab
         private readonly DiscordClient _client;
         private readonly IResponseParser<GitlabResponse> _parser;
 
-        public const int MAX_NOTE_LENGTH = 20;
+        public const int MAX_NOTE_LENGTH = 35;
 
         public MinimalisticGitlabCommentWrapper(string gitHelperType, DiscordClient client,
             IResponseParser<GitlabResponse> parse, UserLinkEstablisherService establisher,
