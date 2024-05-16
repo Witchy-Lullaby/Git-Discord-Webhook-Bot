@@ -42,7 +42,7 @@ namespace LLM.GitHelper.Helpers
                         var state = response.ObjectAttributes.State;
                         await _threadWatcher.AddNeededMembersToThread(threadChannel, identifiers); //if someone was mentioned add them to thread
                         await _threadWatcher.Post(threadChannel, threadedMessage); //post to thread
-                        if (state.Contains("closed") || state.Contains("merged")) await threadChannel.DeleteAsync(); //await _threadWatcher.RemoveEveryone(threadChannel); //remove all on close
+                        if (state.Contains("closed") || state.Contains("merged")) await _threadWatcher.RemoveEveryone(threadChannel); //remove all on close
                     }
                     else _debugger.Log($"Couldn't find a thread '{title}'.", new DebugOptions(this, "[THREAD NOT FOUND]"));
                 }

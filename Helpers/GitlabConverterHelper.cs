@@ -1,5 +1,4 @@
 ﻿
-using DSharpPlus.Entities;
 using LLM.GitHelper.Data.Database;
 using LLM.GitHelper.Data.Git.Gitlab;
 
@@ -18,11 +17,6 @@ namespace LLM.GitHelper.Helpers
             };
         }
 
-        public static string ToWebVariant(this string text)
-        {
-            return text.Replace(" ", "%20");
-        }
-
         public static string ToImage(this string resposeAction, GitlabResponse actionDiffer)
         {
             switch (resposeAction.ToLower())
@@ -38,24 +32,6 @@ namespace LLM.GitHelper.Helpers
 
                 default:
                     return "https://bunbun.cloud/admin/funkymonke/img/_drip_monkey_banner.gif";
-            }
-        }
-
-        public static DiscordColor ToDiscordColor(this GitlabResponse response)
-        {
-            switch (response.ObjectKind.ToLower())
-            {
-                case "":
-                    return DiscordColor.Magenta;
-
-                case Endpoints.GITLAB_MERGE_REQUEST_ATTRIBUTE:
-                    return CheckMergeRequestStateColor(response.ObjectAttributes.State.ToLower(), response.ObjectAttributes.Action);
-
-                case Endpoints.GITLAB_COMMENT_ATTRIBUTE:
-                    return new DiscordColor(64, 64, 64);
-
-                default:
-                    return DiscordColor.Black;
             }
         }
 
@@ -114,14 +90,6 @@ namespace LLM.GitHelper.Helpers
             if (actionDiffer == Endpoints.GITLAB_COMMENT_PR_TYPE.ToLower()) return "https://bunbun.cloud/admin/funkymonke/img/prcommentking.png";
             else if (actionDiffer == Endpoints.GITLAB_COMMENT_COMMIT_TYPE.ToLower()) return "https://bunbun.cloud/admin/funkymonke/img/commitcommented.png";
             else return "https://bunbun.cloud/admin/funkymonke/img/_drip_monkey_banner.gif";
-        }
-
-        private static DiscordColor CheckMergeRequestStateColor(string actionDiffer, string prAction)
-        {
-            if (prAction != null && prAction.Length > 0 && prAction == "update") return DiscordColor.Yellow;
-            if (actionDiffer == "opened") return new DiscordColor(115, 179, 255);
-            else if (actionDiffer == "closed") return new DiscordColor(255, 121, 121);
-            else return new DiscordColor(104, 255, 137);
         }
 
         private static string CheckMergeRequestState(string actionDiffer, string prAction)

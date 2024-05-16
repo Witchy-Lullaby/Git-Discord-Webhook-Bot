@@ -21,7 +21,6 @@ namespace LLM.GitHelper.Registrators
         private readonly TrackingService _trackingService;
         private readonly UserLinkEstablisherService _userLinkEstablisherService;
         private readonly PrettyViewWrapService _prettyViewWrapService;
-        private readonly MinimalisticViewWrapService _minimalisticViewWrapService;
         private readonly ThreadWatcherService _threadWatcherService;
         private readonly GitCatcherHelper _catcherHelper;
 
@@ -38,7 +37,6 @@ namespace LLM.GitHelper.Registrators
             _trackingService = new TrackingService(_discordClient, configs.BroadcastData);
             _userLinkEstablisherService = new UserLinkEstablisherService(configs.LinkData);
             _prettyViewWrapService = new PrettyViewWrapService(_userLinkEstablisherService, _discordClient, responseParser);
-            _minimalisticViewWrapService = new MinimalisticViewWrapService(_userLinkEstablisherService, _discordClient, responseParser);
             _threadWatcherService = new ThreadWatcherService(_userLinkEstablisherService, _discordClient, responseParser, _debugger);
             _catcherHelper = new GitCatcherHelper(_threadWatcherService, _broadcastDataService);
 
@@ -66,7 +64,6 @@ namespace LLM.GitHelper.Registrators
             builder.Services.AddSingleton<BroadcastDataService>(_broadcastDataService);
             builder.Services.AddSingleton<TrackingService>(_trackingService);
             builder.Services.AddSingleton<PrettyViewWrapService>(_prettyViewWrapService);
-            builder.Services.AddSingleton<MinimalisticViewWrapService>(_minimalisticViewWrapService);
             builder.Services.AddSingleton<UserLinkEstablisherService>(_userLinkEstablisherService);
             builder.Services.AddSingleton<ThreadWatcherService>(_threadWatcherService);
             builder.Services.AddSingleton<GitCatcherHelper>(_catcherHelper);

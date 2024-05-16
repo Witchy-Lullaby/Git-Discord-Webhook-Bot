@@ -20,7 +20,6 @@ namespace LLM.GitHelper.Controllers
         private readonly IResponseParser<GitlabResponse> _gitResponseParser;
         private readonly GitCatcherHelper _catcherHelper;
         private readonly PrettyViewWrapService _prettyViewWrapService;
-        private readonly MinimalisticViewWrapService _minimalisticViewWrapService;
         private readonly BroadcastDataService _broadcastService;
 
         public GitCatcherController(IDebugger logger,
@@ -28,8 +27,7 @@ namespace LLM.GitHelper.Controllers
             IResponseParser<GitlabResponse> responseParser,
             GitCatcherHelper catcherHelper,
             BroadcastDataService broadcasterService,
-            PrettyViewWrapService prettyViewWrapService,
-            MinimalisticViewWrapService minimalisticViewWrapService) : base()
+            PrettyViewWrapService prettyViewWrapService) : base()
         {
             _debugger = logger;
             _discordConfig = config;
@@ -37,7 +35,6 @@ namespace LLM.GitHelper.Controllers
             _catcherHelper = catcherHelper;
             _prettyViewWrapService = prettyViewWrapService;
             _broadcastService = broadcasterService;
-            _minimalisticViewWrapService = minimalisticViewWrapService;
         }
 
         [HttpPost("ping")]
@@ -65,11 +62,11 @@ namespace LLM.GitHelper.Controllers
             string[] identifiers = response.CreateIdentifiers();
 
             //catch all implementation if we've set a channel id (CatchAllAPI_ID) in discordconfig
-            await _debugger.TryExecuteAsync(CatchAll(await _minimalisticViewWrapService.WrapResponseInEmbed(response, response.ObjectKind, lookupKeys)));
+            await _debugger.TryExecuteAsync(CatchAll(await _prettyViewWrapService.WrapResponseInEmbed(response, response.ObjectKind, lookupKeys)));
             var allPrefixes = _broadcastService.GetAllPrefixes();
 
             string title = lookupKeys.ToTitle();
-            var threadedMessage = await _minimalisticViewWrapService.WrapResponseInEmbed(response, response.ObjectKind, lookupKeys);
+            var threadedMessage = await _prettyViewWrapService.WrapResponseInEmbed(response, response.ObjectKind, lookupKeys);
 
             if (allPrefixes.Contains("all"))
             {
