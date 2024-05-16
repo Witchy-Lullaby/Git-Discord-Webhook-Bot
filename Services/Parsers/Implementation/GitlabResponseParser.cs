@@ -17,6 +17,8 @@ namespace LLM.GitHelper.Services.Parsers.Implementation
             {
                 response.ObjectAttributes.Title,
                 response.ObjectAttributes.SourceBranch,
+                response.ObjectAttributes.Action,
+                response.ObjectAttributes.Description,
                 response.ObjectKind
             };
 

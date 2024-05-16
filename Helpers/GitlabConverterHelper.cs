@@ -56,7 +56,8 @@ namespace LLM.GitHelper.Helpers
                     return new[]
                     {
                         response.ObjectAttributes.Title,
-                        response.ObjectAttributes.SourceBranch
+                        response.ObjectAttributes.SourceBranch,
+                        response.ObjectAttributes.Action
                     };
             }
         }
