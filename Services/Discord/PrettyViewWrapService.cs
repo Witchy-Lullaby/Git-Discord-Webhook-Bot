@@ -9,7 +9,7 @@ using LLM.GitHelper.MessageWrappers.Gitlab;
 
 namespace LLM.GitHelper.Services.Discord
 {
-    public class PrettyViewWrapService : IService
+    public class PrettyViewWrapService : IService, IPrettyViewService
     {
         private readonly UserLinkEstablisherService _establisherService;
         private readonly DiscordClient _client;
