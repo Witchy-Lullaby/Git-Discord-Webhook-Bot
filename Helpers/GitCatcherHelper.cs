@@ -42,11 +42,27 @@ namespace LLM.GitHelper.Helpers
                         var state = response.ObjectAttributes.State;
                         await _threadWatcher.AddNeededMembersToThread(threadChannel, identifiers); //if someone was mentioned add them to thread
                         await _threadWatcher.Post(threadChannel, threadedMessage); //post to thread
-                        if (state.Contains("closed") || state.Contains("merged")) await threadChannel.DeleteAsync(); //await _threadWatcher.RemoveEveryone(threadChannel); //remove all on close
+                        if (state.Contains("closed") || state.Contains("merged"))
+                        {
+                            await ClearRelatedMessages(threadChannel, channel, title, threadedMessage); 
+                            //await _threadWatcher.RemoveEveryone(threadChannel); //remove all on close
+                        }
                     }
                     else _debugger.Log($"Couldn't find a thread '{title}'.", new DebugOptions(this, "[THREAD NOT FOUND]"));
                 }
             }
+        }
+
+        private async Task ClearRelatedMessages(DiscordThreadChannel threadChannel, DiscordChannel channel, string title, DiscordMessageBuilder messageToRedactTo)
+        {
+            await threadChannel.DeleteAsync();
+            var messages = await channel.GetMessagesAsync();
+            foreach (var message in messages)
+            {
+                if (!message.Content.Contains(title)) continue;
+                await message.ModifyAsync(messageToRedactTo);
+            }
+
         }
 
         public async Task ForceCreateThreads(string title, DiscordMessageBuilder threadedMessage,
