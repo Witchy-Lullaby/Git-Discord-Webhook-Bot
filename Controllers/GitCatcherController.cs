@@ -62,7 +62,7 @@ namespace LLM.GitHelper.Controllers
             string[] identifiers = response.CreateIdentifiers();
 
             //catch all implementation if we've set a channel id (CatchAllAPI_ID) in discordconfig
-            await CatchAll(await _prettyViewWrapService.WrapResponseInEmbed(response, response.ObjectKind, lookupKeys));
+            await _debugger.TryExecuteAsync(CatchAll(await _prettyViewWrapService.WrapResponseInEmbed(response, response.ObjectKind, lookupKeys)));
             var allPrefixes = _broadcastService.GetAllPrefixes();
 
             string title = lookupKeys.ToTitle();
